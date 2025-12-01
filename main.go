@@ -17,4 +17,13 @@ func main() {
 		fmt.Println("Erro ao conecta o banco de dados:", err)
 	}
 	defer db.Close()
+
+	// Cri as tabelas no banco de dados
+	_, err = db.Exec(`CREATE TABLE IF NOT EXISTS produtos (
+		id SERIAL PRIMARY KEY,
+		nome VARCHAR(100) NOT NULL
+	)`)
+	if err != nil {
+		fmt.Println("Erro ao criar tabela produtos:", err)
+	}
 }
